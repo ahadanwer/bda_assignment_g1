@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: docker/namenode/Dockerfile
-    container_name: namenode
+    container_name: namenode_bda
     restart: always
     ports:
       - 9870:9870
@@ -22,7 +22,7 @@ services:
     build:
       context: .
       dockerfile: docker/datanode/Dockerfile
-    container_name: datanode
+    container_name: datanode_bda
     restart: always
     volumes:
       - hadoop_datanode:/hadoop/dfs/data
@@ -35,7 +35,7 @@ services:
     build:
       context: .
       dockerfile: docker/resourcemanager/Dockerfile
-    container_name: resourcemanager
+    container_name: resourcemanager_bda
     restart: always
     ports:
       - 8088:8088
@@ -48,7 +48,7 @@ services:
     build:
       context: .
       dockerfile: docker/nodemanager/Dockerfile
-    container_name: nodemanager
+    container_name: nodemanager_bda
     restart: always
     volumes:
       - ./data:/data
@@ -61,7 +61,7 @@ services:
     build:
       context: .
       dockerfile: docker/historyserver/Dockerfile
-    container_name: historyserver
+    container_name: historyserver_bda
     restart: always
     environment:
       SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864 resourcemanager:8088"
